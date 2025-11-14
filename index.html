@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Rural Entrepreneur - Onion Crisis in Lasalgaon: marketplace connecting farmers and buyers, resources and 2019-2025 outlook.">
+    <title>Rural Entrepreneur - Onion Crisis & Marketplace</title>
+
+    <!-- Google Fonts for better typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root{
+            --primary-1:#6A4CFF; /* vibrant purple */
+            --accent-1:#FF6B00;  /* bright orange */
+            --green-1:#00C853;  /* neon green */
+            --light-1:#F3E5F5;  /* soft lavender */
+            --text:#2E2E2E;
+            --maxwidth:1200px;
+        }
+        *{box-sizing:border-box}
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #E1F5C4, #C8E6C9);
+            color: var(--text);
+            line-height: 1.7;
+            letter-spacing: 0.4px;
+            animation: fadeIn 0.6s ease-in;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(6px);} to { opacity: 1; transform: translateY(0);} }
+
+        /* top fixed area - redesigned so it doesn't overlap content on small screens */
+        .top-area{position:fixed;top:0;left:0;width:100%;z-index:1000}
+        .affiliation-banner { background: linear-gradient(135deg, var(--green-1), #66BB6A); color: white; text-align: center; padding: 0.5em; font-weight: 600; box-shadow: 0 4px 8px rgba(0,0,0,0.06); }
+
+        .nav-bar { width:100%; background: linear-gradient(135deg, var(--primary-1), #A1887F); color: white; padding: 0.5em 1em; display:flex; gap:1rem; align-items:center; justify-content:space-between; }
+        .nav-left{display:flex;gap:1rem;align-items:center}
+        .nav-bar a { color: white; text-decoration: none; margin: 0 0.25em; font-weight: 500; transition: color 0.2s; }
+        .nav-bar a:hover { color: #FFEB3B; }
+        .nav-actions{display:flex;gap:0.5rem;align-items:center}
+        .menu-toggle{display:none;background:transparent;border:none;color:white;font-size:1.1rem}
+
+        header {
+            margin-top:96px;
+            background: url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1400&q=60') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 3em 1em;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+        }
+        header h1 {
+            font-size:clamp(1.8rem,2.8vw,3rem);
+            margin: 0;
+            color: #FFD700;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.6);
+            font-weight: 700;
+            font-family: 'Merriweather', serif;
+            letter-spacing: 1.2px;
+        }
+        header p {
+            margin: 0.5em 0 0;
+            color: #FFFFFF;
+            font-size: 1.25rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+            font-weight: 500;
+            font-family: 'Poppins', sans-serif;
+        }
+        .hero-cta { margin-top: 1em; }
+        .hero-cta button { background: linear-gradient(135deg, var(--accent-1), #FFC107); color: white; padding: 0.75em 1.25em; border: none; border-radius: 28px; font-size: 1.02em; cursor: pointer; transition: transform 0.18s, box-shadow 0.18s; box-shadow: 0 6px 14px rgba(0,0,0,0.12); }
+        .hero-cta button:focus{outline:3px solid rgba(255,193,7,0.18)}
+
+        section { padding: 2em; max-width: var(--maxwidth); margin: 0 auto; }
+        .card {
+            background: #F4FFE3; /* light green card background instead of white */
+            border: 1px solid rgba(0,0,0,0.08);
+            border-radius: 14px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+            padding: 1.25em;
+            margin: 1em 0;
+            transition: transform 0.18s, box-shadow 0.18s;
+        }
+        .card:hover { transform: translateY(-4px); }
+
+        .portal { border-radius: 10px; padding:1em; background: linear-gradient(135deg, var(--light-1), #FFE0B2); }
+        form { display:flex; flex-direction:column; gap:0.5em }
+
+        .row{display:flex;gap:1em;align-items:center}
+        .col{flex:1}
+        input[type="text"], input[type="password"], select { padding:0.6em;border-radius:8px;border:1px solid rgba(0,0,0,0.08);font-size:0.95rem }
+        button.btn{ padding:0.65em 0.8em;background:linear-gradient(135deg,var(--accent-1),var(--green-1));color:white;border:none;border-radius:10px;cursor:pointer }
+
+        #listings { display:flex;flex-wrap:wrap;gap:1em }
+        .listing { flex:1 1 300px; background: linear-gradient(135deg, var(--light-1), #FFE0B2); border-radius:12px; padding:1em; border:1px solid rgba(0,0,0,0.06) }
+
+        .profile-section, .orders-delivery-section{ display:none }
+
+        .social-login{display:flex;gap:0.5em;flex-wrap:wrap}
+        .social-btn{padding:0.45em 0.6em;border-radius:8px;color:white;border:none;cursor:pointer;display:inline-flex;gap:0.5em;align-items:center}
+
+        .testimonial{text-align:center}
+        .timeline{display:flex;flex-direction:column;gap:0.75em}
+        .timeline-item{background:linear-gradient(135deg,var(--light-1),#FFE0B2);padding:0.8em;border-left:4px solid var(--accent-1);border-radius:8px}
+
+        footer{background:linear-gradient(135deg,var(--primary-1),#A1887F);color:white;text-align:center;padding:1em}
+
+        /* small screen tweaks */
+        @media(max-width:768px){
+            .nav-left{gap:0.5rem}
+            .menu-toggle{display:inline-block}
+            .nav-links{display:none}
+            .nav-links.open{display:flex;flex-direction:column;gap:0.5rem;background:rgba(0,0,0,0.04);padding:0.5em;border-radius:8px;margin-left:1rem}
+            header{padding:2em 1em}
+            .row{flex-direction:column}
+            .affiliation-banner{font-size:0.9rem}
+        }
+
+        /* accessibility helpers */
+        .sr-only{position:absolute;border:0;padding:0;margin:-1px;height:1px;width:1px;overflow:hidden;clip:rect(0 0 0 0)}
+    </style>
+</head>
+<body>
+    <div class="top-area">
+        <div class="affiliation-banner" role="note">This site is affiliated with the Government of Maharashtra. (Demo site - affiliation simulated for illustrative purposes.)</div>
+        <nav class="nav-bar" aria-label="Primary navigation">
+            <div class="nav-left">
+                <strong style="margin-right:0.5rem">Rural Entrepreneur</strong>
+                <div class="nav-links" id="nav-links">
+                    <a href="#header-section" onclick="scrollToSection('header-section')"><i class='fas fa-home'></i> Home</a>
+                    <a href="#crisis-info" onclick="scrollToSection('crisis-info')"><i class='fas fa-info-circle'></i> Crisis Info</a>
+                    <a href="#content" onclick="scrollToSection('content')"><i class='fas fa-store'></i> Marketplace</a>
+                    <a href="#orders-page" onclick="scrollToSection('orders-page')"><i class='fas fa-truck'></i> Orders & Delivery</a>
+                    <a href="#profile-page" onclick="scrollToSection('profile-page')"><i class='fas fa-user'></i> Profile</a>
+                </div>
+            </div>
+            <div class="nav-actions">
+                <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="nav-links" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
+                <div style="display:flex;gap:0.5rem;align-items:center">
+                    <label for="language-select" class="sr-only">Language</label>
+                    <select id="language-select" onchange="changeLanguage()" aria-label="Change language" style="padding:0.4em;border-radius:6px;border:1px solid rgba(255,255,255,0.2);background:transparent;color:white">
+                        <option value="en">EN</option>
+                        <option value="hi">HI</option>
+                        <option value="mr">MR</option>
+                    </select>
+                    <button class="btn" id="join-btn" onclick="scrollToSection('login-section')">Join Marketplace</button>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <header id="header-section"">
+        <h1>Welcome to Rural Entrepreneur: Onion Crisis & Marketplace</h1>
+        <p>Empowering Farmers, Connecting Buyers — Fresh Onions Direct from Lasalgaon</p>
+        <div class="hero-cta">
+            <button onclick="scrollToSection('crisis-info')" aria-label="Learn about the crisis">Learn About the Crisis</button>
+        </div>
+    </header>
+
+    <!-- Crisis Info Landing Page -->
+    <section id="farmer-gallery" class="card" style="text-align:center">
+        <h2>Rural Onion Farmers of Lasalgaon</h2>
+        <p>Meet the hardworking farmers behind Maharashtra’s largest onion market.</p>
+
+        <table style="width:100%;border-collapse:collapse;margin-top:1.5em">
+            <tr>
+                <td style="padding:1em;border:1px solid #ccc">
+                    <img src="https://images.unsplash.com/photo-1600679479272-6c89bd1e0c31?auto=format&fit=crop&w=400&q=60" alt="Farmer working in field" style="width:100%;border-radius:14px;box-shadow:0 4px 10px rgba(0,0,0,0.2)">
+                    <p style="margin-top:0.5em;font-weight:600">Field Work</p>
+                </td>
+                <td style="padding:1em;border:1px solid #ccc">
+                    <img src="https://images.unsplash.com/photo-1600147184943-216c802319b4?auto=format&fit=crop&w=400&q=60" alt="Indian farmer portrait" style="width:100%;border-radius:14px;box-shadow:0 4px 10px rgba(0,0,0,0.2)">
+                    <p style="margin-top:0.5em;font-weight:600">Rural Farmer Portrait</p>
+                </td>
+                <td style="padding:1em;border:1px solid #ccc">
+                    <img src="https://images.unsplash.com/photo-1589883661925-c910c52b258f?auto=format&fit=crop&w=400&q=60" alt="Farmers harvesting" style="width:100%;border-radius:14px;box-shadow:0 4px 10px rgba(0,0,0,0.2)">
+                    <p style="margin-top:0.5em;font-weight:600">Harvesting Onions</p>
+                </td>
+            </tr>
+        </table>
+    </section>
+
+    <section id="crisis-info" class="card" aria-labelledby="crisis-title">
+        <h2 id="crisis-title"><i class="fas fa-exclamation-triangle" aria-hidden="true"></i> Rural Entrepreneur of Maharashtra Facing Problem of the Onion Crisis in Lasalgaon: 2019 Challenges and 2025 Outlook</h2>
+        <p id="crisis-overview">Lasalgaon, a key onion-producing hub in Maharashtra, faced a devastating crisis in 2019 due to market volatility. This page explores the challenges and future solutions for rural entrepreneurs.</p>
+
+        <h3 id="challenges-title"><i class="fas fa-chart-down" aria-hidden="true"></i> 2019 Challenges</h3>
+        <div class="timeline" id="challenges-timeline">
+            <div class="timeline-item">
+                <h4>Price Crash</h4>
+                <p>Onion prices plummeted to very low levels due to oversupply and poor storage, causing massive losses for farmers.</p>
+            </div>
+            <div class="timeline-item">
+                <h4>Farmer Distress</h4>
+                <p>Many farmers faced debt and severe economic hardship, highlighting systemic gaps in market protection.</p>
+            </div>
+            <div class="timeline-item">
+                <h4>Market Failures</h4>
+                <p>Lack of direct linkages and middlemen exploitation worsened the crisis, highlighting the need for better supply chains.</p>
+            </div>
+        </div>
+
+        <h3 id="outlook-title"><i class="fas fa-chart-up" aria-hidden="true"></i> 2025 Outlook</h3>
+        <div class="timeline" id="outlook-timeline">
+            <div class="timeline-item">
+                <h4>Digital Platforms</h4>
+                <p>Apps and online marketplaces will enable direct farmer-to-consumer sales, reducing middlemen and stabilizing prices.</p>
+            </div>
+            <div class="timeline-item">
+                <h4>Government Support</h4>
+                <p>Policies like subsidies, better storage, and export promotion can empower rural entrepreneurs.</p>
+            </div>
+            <div class="timeline-item">
+                <h4>Sustainable Growth</h4>
+                <p>Innovations in farming tech and improved market linkages could turn the crisis into an opportunity for prosperity.</p>
+            </div>
+        </div>
+
+        <div class="hero-cta" style="text-align:center;margin-top:1.5em">
+            <button onclick="scrollToSection('content')">Explore Marketplace</button>
+        </div>
+    </section>
+
+    <!-- Login / Marketplace -->
+    <section id="login-section" class="login-section card" aria-labelledby="login-title">
+        <h2 id="login-title"><i class="fas fa-sign-in-alt" aria-hidden="true"></i> Login</h2>
+        <p id="login-info">Choose your role and log in to access your profile.</p>
+        <form id="login-form" onsubmit="handleLogin(event)">
+            <div class="row">
+                <label><input type="radio" name="role" value="buyer" checked> <span id="buyer-label">Buyer</span></label>
+                <label><input type="radio" name="role" value="seller"> <span id="seller-label">Seller</span></label>
+            </div>
+            <label for="username" id="username-label">Username:</label>
+            <input type="text" id="username" aria-describedby="username-desc" required>
+            <div id="username-desc" class="sr-only">Enter username to log in</div>
+            <label for="password" id="password-label">Password:</label>
+            <input type="password" id="password" required>
+            <div style="display:flex;gap:0.5rem;align-items:center;margin-top:0.5rem">
+                <button type="submit" class="btn" id="login-btn">Login</button>
+                <button type="button" class="btn" onclick="guestBrowse()" style="background:linear-gradient(135deg,#607D8B,#455A64)">Continue as guest</button>
+            </div>
+        </form>
+
+        <div class="social-login" aria-label="Social login options" style="margin-top:0.75rem">
+            <button class="social-btn" style="background:#db4437" onclick="socialLogin('Google')" id="google-btn" title="Login with Google"><i class="fab fa-google" aria-hidden="true"></i> <span class="sr-only">Login with Google</span></button>
+            <button class="social-btn" style="background:#4267B2" onclick="socialLogin('Facebook')" id="facebook-btn" title="Login with Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i> <span class="sr-only">Login with Facebook</span></button>
+            <button class="social-btn" style="background:#1DA1F2" onclick="socialLogin('Twitter')" id="twitter-btn" title="Login with Twitter"><i class="fab fa-twitter" aria-hidden="true"></i> <span class="sr-only">Login with Twitter</span></button>
+        </div>
+    </section>
+
+    <!-- Marketplace Content -->
+    <section id="content" class="card">
+        <h2>Marketplace</h2>
+        <p>Browse fresh onion listings from verified sellers in Lasalgaon.</p>
+        <div id="listings" aria-live="polite">
+            <!-- Example listing items generated by JS -->
+        </div>
+
+        <div style="margin-top:1em;display:flex;gap:0.5rem;flex-wrap:wrap">
+            <div class="portal" style="flex:1;min-width:220px">
+                <h4>Payment Options</h4>
+                <div class="payment-options">
+                    <button class="btn" onclick="alert('Payment flow not implemented in demo')">UPI</button>
+                    <button class="btn" onclick="alert('Payment flow not implemented in demo')">Netbanking</button>
+                </div>
+            </div>
+            <div class="portal" style="flex:1;min-width:220px">
+                <h4>Delivery Info</h4>
+                <p class="delivery-info">We support farm pickup and third-party logistics. Delivery ETA varies by location.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="orders-delivery-section" class="orders-delivery-section card" aria-labelledby="orders-title">
+        <h2 id="orders-title">My Orders & Delivery</h2>
+        <div id="orders" aria-live="polite">
+            <p class="sr-only">No orders yet for demo accounts</p>
+        </div>
+    </section>
+
+    <section id="testimonial" class="card testimonial">
+        <h3>What Farmers Say</h3>
+        <p>"Direct access to markets helped me get a fair price." — A farmer from Nashik</p>
+    </section>
+
+    <section id="profile-page" class="card" style="margin-top:2em; display:none">
+        <h2><i class="fas fa-user-circle"></i> Profile</h2>
+        <p id="profile-role" style="font-weight:600"></p>
+
+        <div style="display:flex;gap:1em;flex-wrap:wrap;margin-top:1em">
+            <div class="listing" style="flex:1;min-width:250px">
+                <h3>Personal Details</h3>
+                <p><strong>Name:</strong> <span id="profile-name">—</span></p>
+                <p><strong>Username:</strong> <span id="profile-username">—</span></p>
+                <p><strong>Location:</strong> Lasalgaon, Maharashtra</p>
+            </div>
+
+            <div class="listing" style="flex:1;min-width:250px">
+                <h3>Account Type</h3>
+                <p><strong>Role:</strong> <span id="profile-role-info">—</span></p>
+                <p><strong>Member Since:</strong> 2025</p>
+            </div>
+        </div>
+
+        <button class="btn" onclick="logoutUser()" style="margin-top:1em">Logout</button>
+    </section>
+
+<footer>
+        <p>&copy; <span id="year"></span> Rural Entrepreneur — Demo site. Designed for community & educational use.</p>
+        </footer>
+
+    <!-- New Orders & Delivery Full Page -->
+    <section id="orders-page" class="card" style="margin-top:2em">
+        <h2><i class="fas fa-truck"></i> Orders & Delivery Status</h2>
+        <p>Track all your current and previous orders here.</p>
+
+        <div id="orders-list" style="margin-top:1em;display:flex;flex-direction:column;gap:1em">
+            <!-- Example Demo Orders -->
+            <div class="listing" style="background:linear-gradient(135deg,#FFF8E1,#FFE0B2);border:1px solid rgba(0,0,0,0.08);padding:1em;border-radius:12px">
+                <h4>Order #1001</h4>
+                <p><strong>Seller:</strong> Lasalgaon Farmer Co-op</p>
+                <p><strong>Quantity:</strong> 500 kg</p>
+                <p><strong>Status:</strong> <span style="color:green;font-weight:600">Out for Delivery</span></p>
+                <button class="btn" onclick="alert('Tracking not implemented in demo')" style="margin-top:0.5em">Track Order</button>
+            </div>
+
+            <div class="listing" style="background:linear-gradient(135deg,#FFF8E1,#FFE0B2);border:1px solid rgba(0,0,0,0.08);padding:1em;border-radius:12px">
+                <h4>Order #1002</h4>
+                <p><strong>Seller:</strong> Nashik Growers</p>
+                <p><strong>Quantity:</strong> 200 kg</p>
+                <p><strong>Status:</strong> <span style="color:orange;font-weight:600">Processing</span></p>
+                <button class="btn" onclick="alert('Tracking not implemented in demo')" style="margin-top:0.5em">Track Order</button>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+
+    <script>
+        // small utility: smooth scroll
+        function scrollToSection(id){
+            const el = document.getElementById(id);
+            if(!el) return;
+            el.scrollIntoView({behavior:'smooth',block:'start'});
+        }
+
+        // responsive nav toggle
+        function toggleMenu(){
+            const links = document.getElementById('nav-links');
+            const toggle = document.getElementById('menu-toggle');
+            const open = links.classList.toggle('open');
+            toggle.setAttribute('aria-expanded', open?'true':'false');
+        }
+
+        // Full language switcher with dictionary
+        const translations = {
+            en: {
+                buyer: "Buyer",
+                seller: "Seller",
+                crisisTitle: "Rural Entrepreneur of Maharashtra Facing Problem of the Onion Crisis in Lasalgaon: 2019 Challenges and 2025 Outlook",
+                login: "Login",
+                marketplace: "Marketplace",
+                orders: "Orders & Delivery",
+                learn: "Learn About the Crisis",
+                home: "Home",
+                crisisInfo: "Crisis Info"
+            },
+            hi: {
+                buyer: "खरीदार",
+                seller: "विक्रेता",
+                crisisTitle: "महाराष्ट्र के ग्रामीण उद्यमी लासलगांव में प्याज संकट का सामना कर रहे हैं: 2019 चुनौतियाँ और 2025 दृष्टिकोण",
+                login: "लॉगिन",
+                marketplace: "बाज़ार",
+                orders: "ऑर्डर और डिलीवरी",
+                learn: "संकट के बारे में जानें",
+                home: "होम",
+                crisisInfo: "संकट जानकारी"
+            },
+            mr: {
+                buyer: "खरेदीदार",
+                seller: "विक्रेता",
+                crisisTitle: "महाराष्ट्रातील ग्रामीण उद्योजक लासलगाव येथील कांदा संकटाला सामोरे जात आहेत: 2019 आव्हाने आणि 2025 दृष्टीकोन",
+                login: "लॉगिन",
+                marketplace: "बाजारपेठ",
+                orders: "ऑर्डर्स आणि वितरण",
+                learn: "संकटाबद्दल जाणून घ्या",
+                home: "मुख्यपृष्ठ",
+                crisisInfo: "संकट माहिती"
+            }
+        };
+
+        function changeLanguage(){
+            const lang = document.getElementById('language-select').value;
+            const t = translations[lang];
+
+            // Update interface text
+            document.getElementById('buyer-label').textContent = t.buyer;
+            document.getElementById('seller-label').textContent = t.seller;
+            document.getElementById('crisis-title').textContent = t.crisisTitle;
+            document.getElementById('login-title').textContent = t.login;
+            document.querySelector("a[onclick=\"scrollToSection('content')\']").textContent = t.marketplace;
+            document.querySelector("a[onclick=\"scrollToSection('orders-page')\']").textContent = t.orders;
+            document.querySelector("a[onclick=\"scrollToSection('header')\']").textContent = t.home;
+            document.querySelector("a[onclick=\"scrollToSection('crisis-info')\']").textContent = t.crisisInfo;
+            document.querySelector(".hero-cta button").textContent = t.learn;
+        } else if(lang==='mr'){
+                buyer.textContent='खरेदीदार'; seller.textContent='विक्रीदार';
+            } else {
+                buyer.textContent='Buyer'; seller.textContent='Seller';
+            }
+        }
+
+        // demo social login handler
+        function socialLogin(provider){
+            alert('Social login with ' + provider + ' is a demo. Implement OAuth on the server for production.');
+        }
+
+        // login handling (demo only)
+        function handleLogin(e){
+            e.preventDefault();
+            const username = document.getElementById('username').value.trim();
+            const role = document.querySelector('input[name="role"]:checked').value;
+            if(!username){ alert('Please enter username'); return; }
+            // reveal profile & orders sections for the demo
+            document.querySelector('.profile-section') && (document.querySelector('.profile-section').style.display='block');
+            document.getElementById('orders-page').style.display='block'; document.getElementById('profile-page').style.display='block';
+            // show a simple toast / confirmation
+            // update profile info
+            document.getElementById('profile-name').textContent = username;
+            document.getElementById('profile-username').textContent = username;
+            document.getElementById('profile-role').textContent = role.toUpperCase() + " Profile";
+            document.getElementById('profile-role-info').textContent = role;
+            alert('Welcome ' + username + ' ('+role+'). This is a demo login.');
+            // reveal nav links on (simulated) login
+            document.getElementById('nav-links').classList.add('open');
+        }
+
+        function guestBrowse(){
+            alert('Continuing as guest — some features are limited in demo.');
+            document.getElementById('nav-links').classList.add('open');
+        }
+
+        // sample data for listings (client-side demo)
+        const sampleListings = [
+            {id:1,seller:'Lasalgaon Farmer Co-op',qty:'1000 kg',price:'₹18/kg',desc:'Hybrid red onions, fresh harvest.'},
+            {id:2,seller:'Nashik Growers',qty:'500 kg',price:'₹20/kg',desc:'Organic variety, small-bulb.'},
+            {id:3,seller:'Local Farmer',qty:'200 kg',price:'₹15/kg',desc:'Bulk discount available.'}
+        ];
+
+        function renderListings(){
+            const container = document.getElementById('listings');
+            container.innerHTML = '';
+            sampleListings.forEach(l=>{
+                const div = document.createElement('div');
+                div.className='listing';
+                div.innerHTML = `<h4>${escapeHtml(l.seller)}</h4><p><strong>${escapeHtml(l.qty)}</strong> • ${escapeHtml(l.price)}</p><p>${escapeHtml(l.desc)}</p><div style="margin-top:0.5rem"><button class="btn" onclick="placeOrder(${l.id})">Place Order</button></div>`;
+                container.appendChild(div);
+            });
+        }
+
+        function placeOrder(id){
+            const item = sampleListings.find(x=>x.id===id);
+            if(!item){ alert('Item not found'); return; }
+            alert('Order placed for ' + item.seller + ' ('+item.qty+'). This is a demo — no real payment will be processed.');
+        }
+
+        // small helper to avoid XSS in demo content
+        function escapeHtml(text){
+            return String(text).replace(/[&<>"']/g, function(m){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]); });
+        }
+
+        // set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        function logoutUser(){
+            document.getElementById('profile-page').style.display='none';
+            document.getElementById('orders-page').style.display='none';
+            alert('You have logged out.');
+        }
+
+        // initial render
+        renderListings();
+
+        // lightweight accessibility: focus styles for keyboard users
+        document.addEventListener('keyup', function(e){ if(e.key==='Tab'){ document.body.classList.add('show-focus'); }});
+    </script>
+</body>
+</html>
